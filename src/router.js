@@ -1,4 +1,4 @@
-import Vue from 'vue' 
+import Vue from 'vue'
 import Router from 'vue-router'
 import Index from './views/index.vue'
 import Indexbox from './views/indexbox.vue'//首页
@@ -38,6 +38,7 @@ import Allmovie from './views/movie/allmovie.vue'//明星-所有作品
 import Filmcrew from './views/movie/filmcrew.vue'//电影详情-演员
 import Videosbox from './views/movie/videosbox.vue'//电影详情-图库
 import Login from './views/login.vue'//登录
+import Iframebox from './views/iframebox.vue'//登录
 import Getpwd from './views/member/getpwd'//找回密码
 import Forgetpwd from './views/member/forgetpwd'//找回密码
 import Movies from './views/cinema/movies.vue'//影院详情
@@ -57,10 +58,17 @@ import Paycard from './views/order/paycard'//卡充值
 import Paycardopt from './views/order/paycardopt'//卡充值支付
 import Bindmoblie3 from './views/member/bindmoblie3'//第三绑卡
 import Status from './views/member/status'// 出票页面
+import Rule from './views/member/rule'//规则页面
+import Expired from './views/member/expired'//失效页面
 Vue.use(Router) 
-Router.prototype.goBack = function () {
-  this.isBack = true
-  window.history.go(-1)
+Router.prototype.goBack = function (num) {
+  this.isBack = true;
+  if(num!=null || num != undefined){
+    window.history.go(num)
+  }else{
+     window.history.go(-1)
+  }
+ 
 }
 export default new Router({
   mode: 'hash',
@@ -113,6 +121,14 @@ export default new Router({
       }
    },
    {
+      path: '/Iframebox',
+      name: 'iframebox',
+      component:resolve => require(['./views/iframebox.vue'], resolve),
+      meta: {
+            keepAlive: false
+      }
+   },
+   {
       path: '/Getpwd',
       name: 'getpwd',
       component:resolve => require(['./views/member/getpwd.vue'], resolve)
@@ -126,7 +142,9 @@ export default new Router({
       path: '/Toppedbox',
       name: 'toppedbox',
       component:resolve => require(['./views/hottop/toppedbox.vue'], resolve),
-
+      meta: {
+            keepAlive: false
+      }
    },
    {
       path: '/Contribute',
@@ -180,7 +198,10 @@ export default new Router({
     {
      path:'/Selectbox',
      name:'selectbox',
-     component:resolve => require(['./views/movie/selectbox.vue'],resolve)
+     component:resolve => require(['./views/movie/selectbox.vue'],resolve),
+     meta: {
+        keepAlive: false
+      }
      
    },
    {
@@ -418,8 +439,18 @@ export default new Router({
      path:'/Status',
      name:'status',
      component:resolve => require(['./views/member/status.vue'],resolve)
+    },
+     {
+     path:'/Rule',
+     name:'rule',
+     path:'/expired',
+     component:resolve => require(['./views/member/rule.vue'],resolve)
+    },
+    {
+     path:'/Expired',
+     name:'expired',
+     component:resolve => require(['./views/member/expired.vue'],resolve)
     }
-    
   ]
 })
 
