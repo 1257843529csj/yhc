@@ -7,7 +7,7 @@
 	    />
 	    <div class="guize" style="margin-right:0.2rem;"><a @click="gotorule(1)">如何绑定</a></div>
 	    <div class="box_addbox">
-
+			
 		    <p><input type="text" placeholder="请输入您的卡号" name=""  v-model="card_num"></p>
 		    <p> <input type="password" placeholder="请输入您的密码 " name="" id="pwd" v-model="card_password"></p>
 	    </div>
